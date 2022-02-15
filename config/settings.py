@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     #local
     'menu.apps.MenuConfig',
     'frontend.apps.FrontendConfig',
+    'orders.apps.OrdersConfig',
 ]
 
 MIDDLEWARE = [

@@ -5,6 +5,7 @@ import Header from "./Header";
 import OurStory from "./OurStory";
 import Contact from "./Contact";
 import { useEffect, useState } from "react";
+import Cookies from 'js-cookie';
 
 // const MENU = [
 //   {
@@ -97,7 +98,7 @@ function App() {
   
   useEffect(() => {
     const getMenuItems = async () => {
-      const response = await fetch('/menu').catch(handleError);
+      const response = await fetch('/menu/').catch(handleError);
       if (!response.ok) {
         throw new Error('Network response was not ok')
       } else {
@@ -121,9 +122,8 @@ function App() {
   };
 
 
-  const addToOrder = (additionalItem) => {
+  const addToOrder= (additionalItem) => {
     
-
     if (orderIncludes(additionalItem)) {
       const itemIndex = order.findIndex((item) => item.id == additionalItem.id);
       const newQuantity = order[itemIndex].quantity + 1;
@@ -139,6 +139,7 @@ function App() {
       ];
       setOrder(newOrder);
     };
+
   };
 
   const menuDisplay = CATEGORIES.map((category, index) => <MenuList key={index} category={category} MENU={menulist} addToOrder={addToOrder} />);
@@ -146,14 +147,22 @@ function App() {
 ////////////////////////////////////////////////////////////////Reading previvous orders in local storage
 
 
-  // localStorage.clear();
+  const submitOrder = async (order) => {
+    
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "X-CSRFToken": Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(order)
+    }
+    const response = await fetch('/orders/', options).catch(handleError);
 
-  const getOrder = () => {
-    let ordersData = JSON.parse(localStorage.getItem('orders'));
-    let ordersReadable = ordersData.map((order) => JSON.parse(order));
-    // console.log(ordersReadable);
-  };
-  // getOrder();
+    if (!response.ok) {
+      throw new Error("Network response was not OK");
+    }
+  }
 
 ////////////////////////////////////////////////////////////////Header Navigation
 
@@ -169,12 +178,12 @@ function App() {
                                 <h2>Menu</h2>
                                 {menuDisplay}
                               </div>
-                              <Order order={order} setOrder={setOrder} />
+        <Order order={order} setOrder={setOrder} submitOrder={submitOrder}/>
       </div>}
       {filter === 'our-story' && <OurStory />}
       {filter === 'contact' && <Contact />}
       {filter === 'order-page' && <div className="wrapper">
-                                    <Order order={order} setOrder={setOrder} />
+        <Order order={order} setOrder={setOrder} submitOrder={submitOrder}/>
                                   </div>}
       
     </div>

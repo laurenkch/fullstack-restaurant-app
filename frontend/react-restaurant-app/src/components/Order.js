@@ -1,7 +1,7 @@
 import OrderItem from './OrderItem';
 import Button from 'react-bootstrap/Button';
 
-function Order({ order, setOrder }) {
+function Order({ order, setOrder, submitOrder }) {
         
     const removeItem = (removeItemIndex) => {
         const itemToDeduct = order.find((item) => item.id == removeItemIndex);
@@ -27,16 +27,7 @@ function Order({ order, setOrder }) {
     const orderList = order.map((item, index) => <OrderItem key={index} {...item} removeItem={removeItem} />);
     
     const handleOrder = () => {
-        let previousOrders = localStorage.getItem('orders');
-        JSON.parse(previousOrders);
-        if (previousOrders) {
-            let allOrders = [
-                previousOrders, JSON.stringify(order)
-            ]
-            localStorage.setItem('orders', JSON.stringify(allOrders));
-        } else {
-            localStorage.setItem('orders', JSON.stringify(order));
-        } 
+        submitOrder(order, total)
         setOrder([]);
     };
 
