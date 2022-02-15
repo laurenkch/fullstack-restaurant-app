@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     #local
     'menu.apps.MenuConfig',
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,3 +130,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Static File Directories
+# https://docs.djangoproject.com/en/4.0/ref/settings/#staticfiles-dirs
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'frontend/react-restaurant-app/build/static'),)
+REACT_APP_DIR = os.path.join(BASE_DIR, 'frontend/react-restaurant-app')

@@ -1,0 +1,287 @@
+:root {
+  --red: rgb(250	0	0	);
+  --gray: #404040;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+ 
+/*//////////////////////////////////////////GLOBALS*/
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+li {
+   text-indent: 0;
+}
+
+.btn-primary {
+  margin: 5px;
+  background-color: var(--red) !important;
+  border-radius: 2%;
+  border: 1px solid rgb(235	0	0	) !important;
+}
+
+/*//////////////////////////////////////////BUTTONs*/
+
+.btn:focus,.btn:active {
+   outline: none !important;
+   box-shadow: none !important;
+}
+
+.btn:visited, .btn:focus {
+  outline: 4px solid rgba(64, 64, 64, 0.7) !important;
+}
+
+.btn:active, .btn:hover {
+  outline: 4px solid rgba(64, 64, 64) !important;
+}
+
+.btn {
+    transition: all 0.15s ease-in-out;
+}
+
+
+
+/*//////////////////////////////////////////HEADER*/
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+nav ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding-right: 20px;
+}
+
+nav li {
+  margin: 5px 50px;
+}
+nav div {
+  align-self: end;
+}
+
+li button {
+  width: 100%;
+  height: 50px;
+}
+
+.cart-icon {
+  position: relative;
+}
+
+.counter {
+    position: absolute;
+    top: -12px;
+    right: -10px;
+    background-color: var(--gray);
+    border-radius: 50%;
+    color: white;
+    padding: 0px 7px;
+}
+
+/*//////////////////////////////////////////OUTLINE*/
+
+#root {
+  display: flex;
+  justify-content: center;
+}
+.App {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+}
+
+/*//////////////////////////////////////////WELCOME PAGE*/
+
+.App h2 {
+  text-align: center;
+}
+
+.welcome-page {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 200px;
+ background-color: var(--red);
+ color: white;
+ margin-top: 25px;
+
+}
+
+/*//////////////////////////////////////////MENU*/
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-bottom: 25%;
+}
+.menu-page {
+  width: 100%;
+}
+
+.menu-list h3 {
+  border-bottom: 1px solid gray;
+  margin-top: 15px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  padding: 4px 0;
+}
+
+.menu-item button {
+  align-self: end;
+}
+
+.description {
+  font-style: italic;
+  margin-left: 25px;
+}
+
+.menu-list button {
+  width: 25%;
+}
+
+/*//////////////////////////////////////////ORDER*/
+
+.order-body {
+  width: 100%;
+}
+.order-body h2 {
+  margin-bottom: 49px;
+}
+
+.order-item {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 20px 0px;
+}
+
+.item-quantity {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.remove-button {
+  font-size: 1.5em;
+  width: 35%;
+}
+
+.bottom-order-section {
+text-align: right;
+padding-top: 5px;
+border-top: 1px solid gray;
+}
+
+.place-order-button {
+  margin: 20px 0px 50px 0px;
+}
+
+.our-story-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.our-story {
+  width: 80%;
+  margin-top: 10px;
+  text-align: center;
+}
+.our-story p {
+  text-align: center;
+}
+
+.contact-wrapper {
+  text-align: center;
+  margin-top: 50px;
+
+}
+
+/*//////////////////////////////////////////DESKTOP*/
+
+ @media (min-width: 768px) {
+   #root {
+      margin: 20px;
+    }
+    nav {
+    flex-direction: row;
+  } 
+    nav ul {
+    flex-direction: row;
+    flex: 2;
+    width: auto;
+    padding-right: 0px;
+  }
+    nav div {
+    align-self: start;
+    margin: 0px 25px;
+  }
+
+  li button {
+      height: auto;
+  }
+  .counter {
+    right: -36px;
+  }
+  .cart-icon {
+  margin-top: 5px;
+  margin-right: 5%
+  }
+  .wrapper {
+  flex-direction: row;
+  }
+  .welcome-page {
+  width: 500px;
+  }
+  .menu-page {
+  width: 50%;
+  }
+  .menu-list button {
+  margin-left: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: auto;
+  }
+  .order-body {
+  width: 30%;
+  }
+  .remove-button {
+  width: auto;
+}
+  
+ }
+
+
+
+
