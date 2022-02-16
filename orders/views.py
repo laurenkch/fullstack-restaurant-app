@@ -7,3 +7,8 @@ from .serializer import OrderSerializer
 class OrderView(generics.ListCreateAPIView):
     queryset = OrderItem.objects.all()
     serializer_class = OrderSerializer
+
+
+class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderSerializer

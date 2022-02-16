@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import OrderPreview from "./OrderPreview";
 import RestaurantView from "./RestaurantView";
+import ThankYou from './ThankYouPage';
 
 // const MENU = [
 //   {
@@ -157,13 +158,15 @@ function App() {
         "Content-type": "application/json",
         "X-CSRFToken": Cookies.get('csrftoken'),
       },
-      body: JSON.stringify({ 'name': name, 'items': order, 'total': total, 'completed': false})
+      body: JSON.stringify({ 'name': name, 'items': order, 'total': total})
     }
     const response = await fetch('/orders/', options).catch(handleError);
 
     if (!response.ok) {
       throw new Error("Network response was not OK");
     }
+
+    setFilter('thank-you')    
   }
 
 ////////////////////////////////////////////////////////////////Header Navigation
@@ -187,8 +190,10 @@ function App() {
       {filter === 'order-page' && <div className="wrapper">
         <Order order={order} setOrder={setOrder} submitOrder={submitOrder}/>
       </div>}
-      {filter === 'restaurant-view' && <div className="wrapper">
-        <RestaurantView handleError={handleError}/>
+      {filter === 'restaurant-view' &&
+        <RestaurantView handleError={handleError}/>}
+      {filter === 'thank-you' && <div className="wrapper">
+        <ThankYou />
       </div>}
       
     </div>

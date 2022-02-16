@@ -234,8 +234,18 @@ border-top: 1px solid gray;
 }
 
 .form-label {
-  margin: 5px 10px
+  margin: 5px 10px;
 }
+
+/*//////////////////////////////////////////RESTAURANT VIEW*/
+
+.restaurant-view {
+  display: flex;
+  justify-content: space-around;
+  padding: 50px 0;
+
+}
+
 
 /*//////////////////////////////////////////DESKTOP*/
 
