@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 
 function Order({ order, setOrder, submitOrder }) {
 
-    const [ordername, setOrderName] = useState('')
+    const [name, setName] = useState('')
         
     const removeItem = (removeItemIndex) => {
         const itemToDeduct = order.find((item) => item.id == removeItemIndex);
@@ -34,14 +34,14 @@ function Order({ order, setOrder, submitOrder }) {
     const handleOrder = (e) => {
         e.preventDefault()
         // reduces order info to just item name and quantity. 
-        const order_breakdown = order.map((item) => ({ 'item_name': item.name, 'quantity': item.quantity }))
-        submitOrder(ordername, order_breakdown, total)
+        const order_breakdown = order.map((item) => ({ 'name': item.name, 'quantity': item.quantity }))
+        submitOrder(name, order_breakdown, total)
         setOrder([]);
-        setOrderName('')
+        setName('')
     };
 
     const handleChange = (e) => {
-       setOrderName(e.target.value)
+       setName(e.target.value)
     }
 
 
@@ -56,7 +56,7 @@ function Order({ order, setOrder, submitOrder }) {
                 <Form onSubmit={handleOrder}>
                     <div className="name-input">
                     <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control type="text" id="name" name="ordername" value={ordername} onChange={handleChange} required autoComplete="off" />
+                    <Form.Control type="text" id="name" name="name" value={name} onChange={handleChange} required autoComplete="off" />
                     </div>
                     <Button type="submit" className="place-order-button">Place Order</Button>
                 </Form>

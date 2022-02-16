@@ -149,7 +149,7 @@ function App() {
 ////////////////////////////////////////////////////////////////Submit order button
 
 
-  const submitOrder = async (ordername, order, total) => {
+  const submitOrder = async (name, order, total) => {
     
     const options = {
       method: "POST",
@@ -157,7 +157,7 @@ function App() {
         "Content-type": "application/json",
         "X-CSRFToken": Cookies.get('csrftoken'),
       },
-      body: JSON.stringify({ 'ordername': ordername, 'items': order, 'total': total, 'completed': false})
+      body: JSON.stringify({ 'name': name, 'items': order, 'total': total, 'completed': false})
     }
     const response = await fetch('/orders/', options).catch(handleError);
 
@@ -188,7 +188,7 @@ function App() {
         <Order order={order} setOrder={setOrder} submitOrder={submitOrder}/>
       </div>}
       {filter === 'restaurant-view' && <div className="wrapper">
-        <RestaurantView/>
+        <RestaurantView handleError={handleError}/>
       </div>}
       
     </div>
