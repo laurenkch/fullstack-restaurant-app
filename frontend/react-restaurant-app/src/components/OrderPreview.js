@@ -1,12 +1,7 @@
 import OrderItem from './OrderItem';
 import Button from 'react-bootstrap/Button';
-import { useState } from "react";
-import Form from 'react-bootstrap/Form';
 
-
-function Order({ order, setOrder, submitOrder }) {
-
-    const [ordername, setOrderName] = useState('')
+function OrderPreview({ order, setOrder, setFilter}) {
         
     const removeItem = (removeItemIndex) => {
         const itemToDeduct = order.find((item) => item.id == removeItemIndex);
@@ -31,17 +26,9 @@ function Order({ order, setOrder, submitOrder }) {
 
     const orderList = order.map((item, index) => <OrderItem key={index} {...item} removeItem={removeItem} />);
     
-    const handleOrder = (e) => {
-        e.preventDefault()
-        console.log({ 'name': ordername, 'items': order, 'total': total })
-        submitOrder(ordername, order, total)
-        setOrder([]);
-        setOrderName('')
+    const handleClick = () => {
+        setFilter('order-page')
     };
-
-    const handleChange = (e) => {
-       setOrderName(e.target.value)
-    }
 
 
     return (
@@ -51,15 +38,11 @@ function Order({ order, setOrder, submitOrder }) {
                 {orderList}
             </ul>
             <div className="bottom-order-section">
-                Total: ${total} <br />
-                <Form onSubmit ={handleOrder}>
-                    <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control type="text" id="name" name = "ordername" value={ordername} onChange={handleChange} required autoComplete="off"/>
-                    <Button type="submit" className="place-order-button">Place Order</Button>
-                </Form>
+            Total: ${total} <br/>
+                <Button type="button" onClick={handleClick} className="place-order-button">Review Order</Button>
             </div>
             </div>
     )
 }
 
-export default Order;
+export default OrderPreview;

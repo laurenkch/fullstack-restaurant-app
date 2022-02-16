@@ -6,6 +6,7 @@ import OurStory from "./OurStory";
 import Contact from "./Contact";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
+import OrderPreview from "./OrderPreview";
 
 // const MENU = [
 //   {
@@ -147,7 +148,7 @@ function App() {
 ////////////////////////////////////////////////////////////////Reading previvous orders in local storage
 
 
-  const submitOrder = async (order) => {
+  const submitOrder = async (ordername, order, total) => {
     
     const options = {
       method: "POST",
@@ -155,7 +156,7 @@ function App() {
         "Content-type": "application/json",
         "X-CSRFToken": Cookies.get('csrftoken'),
       },
-      body: JSON.stringify(order)
+      body: JSON.stringify({ 'ordername': ordername, 'items': order, 'total': total })
     }
     const response = await fetch('/orders/', options).catch(handleError);
 
@@ -178,7 +179,7 @@ function App() {
                                 <h2>Menu</h2>
                                 {menuDisplay}
                               </div>
-        <Order order={order} setOrder={setOrder} submitOrder={submitOrder}/>
+        <OrderPreview order={order} setOrder={setOrder} setFilter={setFilter}/>
       </div>}
       {filter === 'our-story' && <OurStory />}
       {filter === 'contact' && <Contact />}
