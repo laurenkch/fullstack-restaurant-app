@@ -227,6 +227,16 @@ border-top: 1px solid gray;
 
 }
 
+.name-input {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px 0;
+}
+
+.form-label {
+  margin: 5px 10px
+}
+
 /*//////////////////////////////////////////DESKTOP*/
 
  @media (min-width: 768px) {

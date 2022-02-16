@@ -7,6 +7,7 @@ import Contact from "./Contact";
 import { useEffect, useState } from "react";
 import Cookies from 'js-cookie';
 import OrderPreview from "./OrderPreview";
+import RestaurantView from "./RestaurantView";
 
 // const MENU = [
 //   {
@@ -145,7 +146,7 @@ function App() {
 
   const menuDisplay = CATEGORIES.map((category, index) => <MenuList key={index} category={category} MENU={menulist} addToOrder={addToOrder} />);
 
-////////////////////////////////////////////////////////////////Reading previvous orders in local storage
+////////////////////////////////////////////////////////////////Submit order button
 
 
   const submitOrder = async (ordername, order, total) => {
@@ -156,7 +157,7 @@ function App() {
         "Content-type": "application/json",
         "X-CSRFToken": Cookies.get('csrftoken'),
       },
-      body: JSON.stringify({ 'ordername': ordername, 'items': order, 'total': total })
+      body: JSON.stringify({ 'ordername': ordername, 'items': order, 'total': total, 'completed': false})
     }
     const response = await fetch('/orders/', options).catch(handleError);
 
@@ -185,7 +186,10 @@ function App() {
       {filter === 'contact' && <Contact />}
       {filter === 'order-page' && <div className="wrapper">
         <Order order={order} setOrder={setOrder} submitOrder={submitOrder}/>
-                                  </div>}
+      </div>}
+      {filter === 'restaurant-view' && <div className="wrapper">
+        <RestaurantView/>
+      </div>}
       
     </div>
   );

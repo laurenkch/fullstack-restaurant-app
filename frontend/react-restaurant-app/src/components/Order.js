@@ -33,8 +33,9 @@ function Order({ order, setOrder, submitOrder }) {
     
     const handleOrder = (e) => {
         e.preventDefault()
-        console.log({ 'name': ordername, 'items': order, 'total': total })
-        submitOrder(ordername, order, total)
+        // reduces order info to just item name and quantity. 
+        const order_breakdown = order.map((item) => ({ 'item_name': item.name, 'quantity': item.quantity }))
+        submitOrder(ordername, order_breakdown, total)
         setOrder([]);
         setOrderName('')
     };
@@ -52,9 +53,11 @@ function Order({ order, setOrder, submitOrder }) {
             </ul>
             <div className="bottom-order-section">
                 Total: ${total} <br />
-                <Form onSubmit ={handleOrder}>
+                <Form onSubmit={handleOrder}>
+                    <div className="name-input">
                     <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control type="text" id="name" name = "ordername" value={ordername} onChange={handleChange} required autoComplete="off"/>
+                    <Form.Control type="text" id="name" name="ordername" value={ordername} onChange={handleChange} required autoComplete="off" />
+                    </div>
                     <Button type="submit" className="place-order-button">Place Order</Button>
                 </Form>
             </div>

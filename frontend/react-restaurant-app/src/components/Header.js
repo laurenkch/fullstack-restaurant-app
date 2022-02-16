@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingBasket, faUtensils} from '@fortawesome/free-solid-svg-icons';
 import Button from "react-bootstrap/Button";
 
 function Header({ order , setFilter}) {
@@ -23,6 +23,9 @@ function Header({ order , setFilter}) {
             <div className="cart-icon">
                 <Button type="button" value="order-page" onClick={handleClick}><FontAwesomeIcon icon={faShoppingBasket} /></Button>
                 <div className="counter">{totalItems}</div>
+            </div>
+            <div className="restaurant-view-button">
+                <Button type="button" value="restaurant-view" onClick={handleClick}><FontAwesomeIcon icon={faUtensils} /></Button>
             </div>
         </nav>
     )
