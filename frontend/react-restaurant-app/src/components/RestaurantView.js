@@ -91,14 +91,20 @@ function RestaurantView() {
                 order.completed === false
             ))
             .map((order) => (
-            <li key={order.id}>{order.name}
-            {order.items.map((item, index) => (
-                    <div key={index}>{item.name}: {item.quantity}</div>
-            ))}
-           {order.total}
-            <Button type='button' onClick={completeOrder} value={order.id}>Completed</Button>
-            <Button type='button' onClick={cancelOrder} value={order.id}>Cancel Order</Button>
-            </li>
+                <li className='kitchen-item' key={order.id}>
+                    <div className='inner-wrapper'>
+                        Name: {order.name}
+                        <h4>Order:</h4>
+                        {order.items.map((item, index) => (
+                                <div className="kitchen-order-summary" key={index}>{item.name}: {item.quantity}</div>
+                        ))}
+                        Total: ${order.total}
+                        <div className="kitchen-buttons">
+                            <Button type='button' onClick={completeOrder} value={order.id}>Completed</Button>
+                            <Button type='button' onClick={cancelOrder} value={order.id}>Cancel Order</Button>
+                        </div>
+                    </div>
+                </li>
             ))
     
     const completed_order_display = orders
@@ -106,25 +112,29 @@ function RestaurantView() {
                 order.completed === true
         ))
         .map((order) => (
-            <li key={order.id}>{order.name}
-                {order.items.map((item, index) => (
-                    <div key={index}>{item.name}: {item.quantity}</div>
-                ))}
-                {order.total}
+            <li className='completed-kitchen-item' key={order.id}>
+                <div className='inner-wrapper'>
+                    Name: {order.name}
+                    <h4>Order:</h4>
+                    {order.items.map((item, index) => (
+                        <div className= "kitchen-order-summary" key={index}>{item.name}: {item.quantity}</div>
+                    ))}
+                    Total: ${order.total}
+                </div>
             </li>
         ))
 
     return (
         <div className="restaurant-view">
             <div>
-                Active Orders
-            <ul>
+                <h3>Active Orders</h3>
+            <ul className='active-orders'>
                 {order_display}
             </ul>
             </div>
             <div>
-                Completed Orders
-                <ul>
+                <h3>Completed Orders</h3>
+                <ul className='completed-orders'>
                     {completed_order_display}
                 </ul>
             </div>

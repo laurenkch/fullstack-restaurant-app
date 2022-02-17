@@ -25,7 +25,7 @@ function Header({ order , setFilter}) {
                 <div className="counter">{totalItems}</div>
             </div>
             <div className="restaurant-view-button">
-                <Button type="button" value="restaurant-view" onClick={handleClick}><FontAwesomeIcon icon={faUtensils} /></Button>
+                <Button type="button" className ="restaurant-view-button" value="restaurant-view" onClick={handleClick}><FontAwesomeIcon icon={faUtensils} /></Button>
             </div>
         </nav>
     )

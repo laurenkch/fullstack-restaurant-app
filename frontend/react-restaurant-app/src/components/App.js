@@ -118,11 +118,6 @@ function App() {
   
 ////////////////////////////////////////////////////////////////Add an item
 
-  const CATEGORIES = [...new Set(menulist.map((item) => item.category))];
-
-  const orderIncludes = (additionalItem) => {
-    return order.some((item) => item.id == additionalItem.id)
-  };
 
 
   const addToOrder= (additionalItem) => {
@@ -145,7 +140,14 @@ function App() {
 
   };
 
-  const menuDisplay = CATEGORIES.map((category, index) => <MenuList key={index} category={category} MENU={menulist} addToOrder={addToOrder} />);
+  const CATEGORIES = [...new Set(menulist.map((item) => item.category))];
+  console.log(menulist)
+  console.log(CATEGORIES)
+  const orderIncludes = (additionalItem) => {
+    return order.some((item) => item.id == additionalItem.id)
+  };
+
+  const menuDisplay = CATEGORIES.map((category, index) => <MenuList key={index} category={category} menulist={menulist} addToOrder={addToOrder} />);
 
 ////////////////////////////////////////////////////////////////Submit order button
 

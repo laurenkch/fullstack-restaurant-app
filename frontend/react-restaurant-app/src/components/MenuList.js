@@ -1,8 +1,7 @@
 import MenuItem from "./MenuItem";
 
-function MenuList({ MENU, category, addToOrder }) {
-
-        const categoryDisplay = MENU.filter((item) => item.category === category)
+function MenuList({ menulist, category, addToOrder }) {
+    const categoryDisplay = menulist.filter((item) => item.category === category)
             .map((item) => <MenuItem key={item.id} item={item} {...item} addToOrder={addToOrder}/>);
 
         return (
