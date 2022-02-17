@@ -4,7 +4,7 @@ function ThankYou() {
 
 
     return (
-        <div>Thank you for your order!</div>
+        <div class="thank-you">Thank you for your order!</div>
     )
     
 }

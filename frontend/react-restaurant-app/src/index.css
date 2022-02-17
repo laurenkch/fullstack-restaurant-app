@@ -237,6 +237,11 @@ border-top: 1px solid gray;
   margin: 5px 10px;
 }
 
+.thank-you {
+  font-size: 3em;
+  margin: 100px 20px;
+}
+
 /*//////////////////////////////////////////RESTAURANT VIEW*/
 
 .restaurant-view {

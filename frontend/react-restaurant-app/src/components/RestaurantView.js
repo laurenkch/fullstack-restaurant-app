@@ -1,31 +1,29 @@
+import { faAmericanSignLanguageInterpreting } from "@fortawesome/free-solid-svg-icons";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 
 function RestaurantView() {
-
+    
     const handleError = (err) => {
         console.warn(err);
-    }
-
-    const getOrders = async () => {
-        console.log('getorders')
-        const response = await fetch(/orders/).catch(handleError);
-        if (!response.ok) {
-            throw new Error('Network response was not ok')
-        } else {
-            const data = await response.json();
-            setOrders(data)
-        }
     }
 
 
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
+        const getOrders = async () => {
+            const response = await fetch(/orders/).catch(handleError);
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            } else {
+                const data = await response.json();
+                setOrders(data)
+            }
+        }
         getOrders();
-
-    }, []); 
+    }, []);
      
     if (!orders) {
         return <div>'Fetching orders...'</div >
@@ -35,7 +33,6 @@ function RestaurantView() {
         const completedOrder = orders.filter((order) => order.id == e.target.value)
         completedOrder.completed = true
         const pk = e.target.value
-
         const pushComplete = async () => {
 
             const options = {
@@ -54,8 +51,15 @@ function RestaurantView() {
             }
         }
         pushComplete();
-        getOrders();
-        
+
+        const newOrders = orders.map((order) => {
+            if (order.id == pk) {
+                return {...order, completed: true}
+            } else {
+                return {...order}
+            }
+        })
+        setOrders(newOrders)
     }
 
     const cancelOrder = (e) => {
@@ -78,7 +82,8 @@ function RestaurantView() {
             }
         }
         pushCancel();
-        getOrders();
+        const newOrders = orders.filter((order) => (order.id != pk))
+        setOrders(newOrders)
     }
 
     const order_display = orders
